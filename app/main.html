@@ -1,0 +1,33 @@
+<style type="text/css">
+	
+</style>
+<div class="container">
+	<div class="row">
+		<div class="col-sm-4">
+			<div class="panel-group">
+				<div class="panel panel-default" ng-repeat="job in jobs track by $index" dnd-draggable="job" dnd-effect-allowed="copyMove">
+			      <div class="panel-heading">{{job}}</div>
+			    </div>
+			</div>
+		</div>
+		<div class="col-sm-8">
+			<div ng-repeat="user in users" class="col-sm-2 text-center" >
+				<img ng-src="{{user.picture.medium}}" class="img-circle">
+				{{user.name.first}}
+				
+				<div ng-repeat="day in user.days track by $index" class="box" dnd-list="day"> 
+					<li ng-repeat="job in day track by $index"  dnd-draggable="job" dnd-effect-allowed="move" dnd-moved="day.splice($index, 1)"
+				        ng-class="{'selected': models.selected === item}"
+				        >
+				        {{job}}
+			   		 </li>
+					
+				</div>
+
+				
+
+		</div>
+
+	</div>
+</div>
+
